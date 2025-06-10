@@ -1,10 +1,12 @@
-package platfrom
+package platform
 
 import (
 	"fmt"
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/metacubex/mihomo/common/convert"
 )
 
 func CheckIPRisk(httpClient *http.Client, ip string) (string, error) {
@@ -12,6 +14,7 @@ func CheckIPRisk(httpClient *http.Client, ip string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	req.Header.Set("User-Agent", convert.RandUserAgent())
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		return "", err

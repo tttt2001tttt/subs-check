@@ -20,7 +20,7 @@ timeout: 5000
 # 如果找不到稳定的测速地址，可以自建测速地址
 speed-test-url: https://github.com/AaronFeng753/Waifu2x-Extension-GUI/releases/download/v2.21.12/Waifu2x-Extension-GUI-v2.21.12-Portable.7z
 # 最低测速结果舍弃(KB/s)
-min-speed: 1024
+min-speed: 512
 # 下载测试时间(s)(与下载链接大小相关，默认最大测试10s)
 download-timeout: 10
 # 单节点测速下载数据大小(MB)限制，0为不限
@@ -44,12 +44,13 @@ node-prefix: ""
 # 是否开启流媒体检测，其中IP欺诈依赖重命名
 media-check: false
 platforms:
-  - openai
+  - iprisk
+  - tiktok
   - youtube
   - netflix
   - disney
+  - openai
   - gemini
-  - iprisk
 
 # 保留之前测试成功的节点
 # 如果为true，则保留之前测试成功的节点，这样就不会因为上游链接更新，导致可用的节点被清除掉
@@ -84,10 +85,10 @@ apprise-api-server: ""
 # 填写通知目标
 # 支持100+ 个通知渠道，详细格式请参照 https://github.com/caronc/apprise
 recipient-url: 
-  # telegram格式：tgram://<bot_token>/<chat_id>
+  # telegram格式：tgram://{bot_token}/{chat_id}
   # - tgram://xxxxxx/-1002149239223
-  # 钉钉格式：dingtalk://<secret>@<dd_token>/<chat_id>
-  # - dingtalk://xxxxxx@xxxxxxx/123123
+  # 钉钉格式：dingtalk://{Secret}@{ApiKey}
+  # - dingtalk://xxxxxx@xxxxxxx
 # 自定义通知标题
 notify-title: "🔔 节点状态更新"
 
@@ -151,7 +152,7 @@ github-proxy: ""
 # 符合条件节点数量的占比，低于此值会将订阅链接打印出来，用于排查质量差的订阅
 success-rate: 0.1
 # 订阅地址 支持 clash/mihomo/v2ray/base64 格式的订阅链接
-# 如果用户想使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
+# 如果用户想明确使用clash类型，那可以在支持的订阅链接结尾加上 &flag=clash.meta
 # github 链接可自己添加ghproxy使用；订阅链接支持 HTTP_PROXY HTTPS_PROXY 环境变量加速拉取
 sub-urls:
   # - https://example.com/sub.txt
